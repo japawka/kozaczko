@@ -10,7 +10,7 @@ class Author(models.Model):
         return f'{self.first_name} {self.last_name}'
 
     def get_absolute_url(self):
-        return reverse('author-detail', args=[str(self.id)])
+        return reverse('shelf:author-detail', args=[str(self.id)])
 
 class Publisher(models.Model):
     name = models.CharField(max_length=80)
@@ -32,4 +32,4 @@ class Book(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('book-detail', args=[str(self.id)])
+        return reverse('shelf:book-detail', args=[str(self.id)])

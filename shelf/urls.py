@@ -1,6 +1,6 @@
 from . import views
 from django.urls import path
-
+app_name = 'shelf'
 urlpatterns = [
     path('authors/', views.AuthorListView.as_view(), name='authors'),
     path('books/', views.BookListView.as_view(), name='books'),
