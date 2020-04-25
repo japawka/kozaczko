@@ -4,18 +4,19 @@
 <a href="{% url 'shelf:authors' %}">Powrót</a>
   <h1>{{ author }}</h1>
 
-    {% if author.book_set  %}
-  <h2> Książki tegoż autora:</h2>
     <ul>
       {% for book in author.book_set.all %}
-        <li>
-          <a href="{{ book.get_absolute_url }}">{{ book.title }}</a> (ISBN:
-          {{book.isbn }}) {{ book.publisher }}
-        </li>
-      {% endfor %}
-  </ul>
-    {% else %}
-      <p>There are no books of this author in the library.</p>
-    {% endif %}
+              <h2> Książki tegoż autora:</h2>
+          <li>
+              <a href="{{ book.get_absolute_url }}">{{ book.title }}</a> (ISBN:
+              {{book.isbn }}) {{ book.publisher }}
+          </li>
+        {% empty %}
+             <p>There are no books of this author in the library.</p>
+         {% endfor %}
+    </ul>
+
+
+
 
 {% endblock %}

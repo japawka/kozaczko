@@ -1,3 +1,7 @@
+# do zgodności z Python 2
+# from __future__ import unicode_literals, absolute_import, print_function
+# from django.utils.encoding import python_2_unicode_compatible
+
 from django.db import models
 from django.urls import reverse
 # from raport.models import raport  ( z innej aplikacji)

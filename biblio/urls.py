@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from contact.views import MessageAddView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('shelf/', include('shelf.urls')),
+    path('contact/', MessageAddView.as_view()),
 ]
