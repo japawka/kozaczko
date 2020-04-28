@@ -1,16 +1,40 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% load shelf_tags %}
 
 {% block content %}
-    <ul>
-<a href="{% url 'shelf:books' %}">Powrót</a>
+<ul>
+
+    <a href="{% url 'shelf:books' %}">Powrót do listy książek</a>
 
     <h2>Tytuł: {{ book }}</h2>
-    <h3>Autor:
-        <a href="{{ book.author.get_absolute_url }}">{{ book.author }}</a></h3>
-    <h3>ISBN: {{book.isbn }} </h3>
-    <h3>Wydawca: {{ book.publisher }}</h3>
 
-  </ul>
+    <h3>Autorzy:</h3>
+        {% for author in book.authors.all %}
+            <a href="{{ author.get_absolute_url }}">{{ author }}</a>
+                {% if not forloop.last %} , {% endif %}
+        {% empty %}
+            <p>Nie ma autorów?</p>
+        {% endfor %}
 
+    <h3>Kategorie:</h3>
+        {% for cat in book.categories.all %}
+           <p>{{ cat }}</p>
+        {% empty %}
+            <p>Nie ma kategorii</p>
+        {% endfor %}
+
+
+    <h3>Wydania:</h3>
+
+        {% show_editions book %}
+
+
+<!--        {% for ed in book.editions.all %}-->
+<!--                <p>{{ ed.publisher }} ({{ ed.date|pub_date }})</p>-->
+<!--        {% empty %}-->
+<!--                 <p>There are no editions of this book in the library.</p>-->
+<!--        {% endfor %}-->
+
+</ul>
 
 {% endblock %}
+

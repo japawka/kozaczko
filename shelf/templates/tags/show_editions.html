@@ -1,0 +1,7 @@
+{% load shelf_tags %}
+
+{% for edition in editions %}
+        <p>{{ edition.publisher }} ({{ edition.date|pub_date }})</p>
+{% empty %}
+         <p>There are no editions of this book in the library.</p>
+{% endfor %}

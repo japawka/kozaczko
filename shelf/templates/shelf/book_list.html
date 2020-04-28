@@ -3,15 +3,26 @@
 {% block content %}
     {% if book_list %}
     <ul>
-        {% for book in object_list %}
-          <li><a href="{{ book.get_absolute_url }}">{{ book.title }}</a> ({{book.author}})</li>
+        {% for book in book_list %}
+          <li><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></li>
 
-<!--          <li>{{ book.isbn }}</li>-->
-<!--          <li>{{ book.publisher }}</li>-->
+            <p> {% for author in book.authors.all %}
+                    <a href="{{ author.get_absolute_url }}">{{ author }}</a>
+                        {% if not forloop.last %} , {% endif %}
+
+                {% empty %}
+                   Nie ma autorów?>
+                {% endfor %}</p>
+
+            <p> {% for cat in book.categories.all %}
+                   {{ cat }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}</p>
+
         {% endfor %}
     </ul>
+
     {% else %}
-        <p>There are no authors in the whole library.</p>
+        <p>There are no books in the whole library.</p>
     {% endif %}
 
 {% endblock %}
